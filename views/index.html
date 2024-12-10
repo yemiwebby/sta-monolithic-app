@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monolithic App</title>
+  </head>
+  <body>
+    <h1>Welcome to the Monolithic App</h1>
+    <form id="userAuthForm">
+      <h2>User Authentication</h2>
+      <button
+        type="button"
+        onclick="callEndpoint('/validate-session', 'POST', { token: 'Bearer dummy-token' })"
+      >
+        Validate Session
+      </button>
+    </form>
+
+    <form id="productCatalogForm">
+      <h2>Product Catalog</h2>
+      <button type="button" onclick="callEndpoint('/products', 'GET')">Get Products</button>
+    </form>
+
+    <form id="checkoutForm">
+      <h2>Checkout</h2>
+      <button
+        type="button"
+        onclick="callEndpoint('/checkout', 'POST', { user_id: '123', items: [{ product_id: '1', quantity: 1 }] })"
+      >
+        Place Order
+      </button>
+    </form>
+
+    <form id="buggyForm">
+      <h2>Intentional Bug</h2>
+      <button type="button" onclick="callEndpoint('/buggy-endpoint', 'GET')">Trigger Bug</button>
+    </form>
+
+    <script>
+      async function callEndpoint(endpoint, method, body = null) {
+        const options = {
+          method,
+          headers: { "Content-Type": "application/json" },
+        };
+        if (body) options.body = JSON.stringify(body);
+
+        try {
+          const response = await fetch(endpoint, options);
+          const data = await response.json();
+          console.log(data);
+          alert(JSON.stringify(data, null, 2));
+        } catch (error) {
+          console.error(error);
+          alert(`Error: ${error.message}`);
+        }
+      }
+    </script>
+  </body>
+</html>

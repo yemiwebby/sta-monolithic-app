@@ -1,0 +1,50 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+*.a
+*.o
+
+# Temporary files
+*.log
+*.tmp
+
+# Go modules and caches
+/go.mod
+/go.sum
+/.idea/
+/vendor/
+/*.swp
+*.db
+
+# IDE and editor-specific files
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and debug
+*.log
+*.trace
+debug/
+
+# Output files
+bin/
+build/
+
+# Docker-related
+docker-compose.override.yml
+.env
+*.env
+
+# Test coverage files
+*.coverprofile
+coverage.out
+*.test
